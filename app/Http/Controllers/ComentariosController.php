@@ -90,7 +90,14 @@ class ComentariosController extends Controller
      */
     public function show($id)
     {
-        //
+         $result =Comentarios::find($id);
+        if ($result) {
+            return response($result, 200);
+        } else {
+            return response()->json([
+           "message" =>" No Existe nigún registro"
+         ], 404);
+        }
     }
 
     /**

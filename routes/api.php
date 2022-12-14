@@ -15,9 +15,15 @@ use App\Http\Controllers\ComentariosController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::resource('usuarios',UsuariosController::class);
-Route::resource('comentarios',ComentariosController::class);
-Route::resource('publicaciones',PublicacionesController::class);
+Route::resource('usuarios',UsuariosController::class)->parameters([
+'usuarios' => 'id'
+]);
+Route::resource('comentarios',ComentariosController::class)->parameters([
+    'comentarios' => 'id'
+    ]);
+Route::resource('publicaciones',PublicacionesController::class)->parameters([
+    'publicaciones' => 'id'
+    ]);
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

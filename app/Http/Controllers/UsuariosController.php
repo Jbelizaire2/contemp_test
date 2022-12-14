@@ -142,12 +142,14 @@ class UsuariosController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $users
+     * @param  int  $id
+     * @param  string  $email
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,User $users)
+    
+    public function update(Request $request, $id)
     { 
-        $id=request()->route('usuario');
+        $id=request()->route('id');
       
         
         if (!intval($id)){
