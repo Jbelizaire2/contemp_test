@@ -16,15 +16,19 @@ use App\Http\Controllers\ComentariosController;
 |
 */
 Route::resource('usuarios',UsuariosController::class)->parameters([
-'usuarios' => 'id'
-]);
-Route::resource('comentarios',ComentariosController::class)->parameters([
-    'comentarios' => 'id'
-    ]);
-Route::resource('publicaciones',PublicacionesController::class)->parameters([
-    'publicaciones' => 'id'
+    'usuarios' => 'id'
     ]);
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+
+//Group API AUTH... with token
+Route::group(['middleware'  => 'auth:api',
+'headers'     => ['Accept' => 'application/json']
+], function(){
+    Route::resource('usuarios/{id}/comentarios',ComentariosController::class)->parameters([
+        'comentarios' => 'idc'
+        ]);
+    Route::resource('usuarios/{id}/publicaciones',PublicacionesController::class)->parameters([
+        'publicaciones' => 'idp'
+        ]);
 });
+
